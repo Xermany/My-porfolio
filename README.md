@@ -20,7 +20,7 @@ It сфера очень заинтересовала меня! Я с удово
 
 ## Навыки и технологии
 ``Jira``,``qase.io``,``SQL``,`` Postman``,``Fiddler``, ``Swagger``, ``Trello``, <br>
-``SoapUI``, ``Git``, ``Chrome DevTools``.
+``SoapUI``, ``Git``, ``Chrome DevTools``,``Miro``, ``JMeter``, ``pgAdmin``, ``Mockoon``, ``cURL``.
 
 
 ## Проекты
