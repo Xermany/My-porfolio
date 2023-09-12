@@ -1,0 +1,214 @@
+
+1.
+
+SELECT species_name
+
+FROM species
+
+WHERE species_id = (
+
+    SELECT MIN(species_id)
+
+    FROM species
+
+);
+
+
+
+2.
+
+select species_name, species_amount
+
+from species
+
+where species_amount >= 1800;
+
+
+
+3.
+
+SELECT species_name, type_id
+
+FROM species 
+
+WHERE species_name LIKE 'п%' and type_id = 5;
+
+
+
+4.
+
+SELECT species_name, species_amount
+
+FROM species 
+
+WHERE species_name LIKE '%са' or species_amount = 5;
+
+
+
+5.
+
+select species_name, date_start
+
+from species
+
+where date_start >= '2023-01-01';
+
+
+
+6. 
+
+                               
+
+
+
+SELECT species_name
+
+FROM species a
+
+JOIN (
+
+	SELECT species_id
+
+	FROM species_in_places
+
+	WHERE place_id = 3
+
+) b ON a.species_id = b.species_id
+
+WHERE species_status = 'absent'
+
+
+
+
+
+7.                            
+
+SELECT species_name, species_amount
+
+FROM species
+
+JOIN species_in_places ON species.species_id = species_in_places.species_id
+
+WHERE place_id = (
+
+	SELECT place_id
+
+	FROM places
+
+	WHERE place_name = 'дом'
+
+) AND EXTRACT(MONTH FROM date_start) = 5
+
+
+
+8.
+
+select species_name
+
+from species
+
+where species_name like	'% %' and  species_name not like '% % %';
+
+
+
+9.
+
+SELECT species_name
+
+FROM species
+
+WHERE date_start = (
+
+	SELECT date_start
+
+	FROM species WHERE species_name = 'малыш'
+
+) AND species_name != 'малыш'
+
+
+
+10.
+
+SELECT species_name
+
+FROM species
+
+JOIN species_in_places ON species.species_id = species_in_places.species_id
+
+WHERE place_id = (
+
+	SELECT place_id
+
+	FROM places
+
+	WHERE place_size = (
+
+		SELECT MAX(place_size)
+
+		FROM places
+
+		WHERE place_name = 'дом' OR place_name = 'сарай'
+
+	)
+
+)
+
+
+
+11.
+SELECT species_name
+FROM species a
+JOIN (
+	SELECT a.place_id, a.species_id
+	FROM species_in_places a
+	JOIN (
+		SELECT species_id
+		FROM species a
+		JOIN (
+			SELECT type_id, SUM(species_amount) AS species_amount_sum
+			FROM species
+			GROUP by type_id
+			ORDER BY species_amount_sum DESC LIMIT 1 OFFSET 4
+		) b ON a.type_id = b.type_id
+	) b ON a.species_id = b.species_id
+	JOIN places ON a.place_id = places.place_id
+	WHERE place_name = 'дом'
+) b ON a.species_id = b.species_id
+
+
+
+12.
+
+
+SELECT species_name
+FROM species AS b
+LEFT JOIN species_in_places AS a ON a.species_id = b.species_id
+WHERE a.species_id IS NULL
+
+
+
+
+====================================================
+
+
+SELECT species_name 
+FROM species
+WHERE species_id = (SELECT MIN(species_id) FROM species)
+Во втором задании, первое:
+
+SELECT species_name 
+FROM species
+WHERE to_char(date_start,'YYYY') = '2023'
+Во втором задании, четвертое:
+
+SELECT species_name 
+FROM species
+WHERE species_name LIKE'% %'
+Во втором задании, третье:
+
+SELECT s.species_name, s.species_amount
+FROM с s
+JOIN species_in_places sip  ON s.species_id = sip.species_id  
+JOIN places p on sip.place_id = p.place_id 
+WHERE to_char(s.date_start,'MM') = '05' AND
+p.place_name = 'дом'

@@ -1,0 +1,35 @@
+1.
+select s. user_id,
+       s. group_id,
+       t. teacher_id,
+	   t. email as teacher_email
+	 From group_student AS s
+inner join teacher AS t
+on s. group_id = t. group_id
+where t.email = 'blanda.jamil@yahoo.com';
+
+2.
+select student. level,
+       users. user_email
+ From student 
+right outer join users 
+on student.level = users. user_email
+where users. user_email = 'gpagac@jacobs.com';
+
+3.
+select u.user_id,
+       u.subject_id,
+	   s.subject_title
+from users as u
+join subject as s
+on u.subject_id = s.subject_id
+where u.user_id = '11300';
+
+4.
+
+select group_student. group_id,
+	   student. level
+From student 
+left outer join group_student 
+on group_student. user_id = student. user_id
+where group_student. group_id = '10';

@@ -1,0 +1,39 @@
+1.
+
+select student AS s, level AS stud_level
+from student
+where user_id = 9651;
+
+2.
+
+select email
+from teacher
+where  
+teacher_id = 31433
+OR teacher_id = 30019;
+
+3.
+select *
+from student
+where 
+   ( level = 'Advanced' AND education_form = 'group')
+OR ( level = 'Upper-Intermediate' AND education_form = 'personal');
+
+4.
+select *
+from teacher
+where group_id between 180 and 190;
+
+5.
+SELECT * 
+FROM teacher 
+WHERE email LIKE '%yahoo.com';   
+
+6.
+insert into subject (subject_id, subject_title)
+values (16, 'Chinese');
+
+7.
+update teacher
+set email = 'cold5562@gmail.com'
+where teacher_id = 5562;

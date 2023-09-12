@@ -1,0 +1,28 @@
+1.
+select level, Count (*)
+from student
+Group by level;
+
+2.
+select level, education_form,
+count (*)
+from student
+where level in ('Advanced')
+group by level, education_form;
+
+3.
+select level, education_form,
+count (*)
+from student
+group by level, education_form
+order by level, education_form desc;
+
+4.
+select max (group_id), min (group_id)
+from group_student;
+
+5.
+SELECT * 
+FROM group_student
+ORDER BY user_id DESC
+LIMIT 1;

@@ -1,0 +1,25 @@
+1.
+Select user_id
+from users
+where user_email = 'houston42@gmail.com';
+
+2.
+Select level
+from student
+where user_id = 44133;
+
+3.
+Select subject_title
+from subject
+where subject_id = 8;
+
+4.
+Select email
+from  teacher
+where group_id = 80;
+
+5.
+Select 
+distinct education_form
+from  student
+where user_id = 12203;
