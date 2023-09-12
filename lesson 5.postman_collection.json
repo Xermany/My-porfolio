@@ -1,0 +1,549 @@
+{
+	"info": {
+		"_postman_id": "14f15560-310e-4eee-96ee-9bfebb6e3154",
+		"name": "lesson 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27642968"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"item": [
+				{
+					"name": "create board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"idBoard\"\r",
+									"var value = pm.response.json().id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"new board\",\r\n    \"token\": \"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}boards",
+							"host": [
+								"{{baseURL}}boards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create list 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"idList\"\r",
+									"var value = pm.response.json().id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"list1\",\r\n    \"idBoard\":\"{{idBoard}}\",\r\n    \"token\": \"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}lists",
+							"host": [
+								"{{baseURL}}lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create list 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"idList2\"\r",
+									"var value = pm.response.json().id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"list2\",\r\n    \"idBoard\":\"{{idBoard}}\",\r\n    \"token\": \"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}lists",
+							"host": [
+								"{{baseURL}}lists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"idCard\"\r",
+									"var value = pm.response.json().id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idList\":\"{{idList}}\",\r\n    \"name\":\"card1\",\r\n    \"token\":\"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}cards",
+							"host": [
+								"{{baseURL}}cards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var key = \"idComm\"\r",
+									"var value = pm.response.json().id\r",
+									"\r",
+									"pm.collectionVariables.set(key, value)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"text\":\"comment\",\r\n    \"token\":\"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}cards/{{idCard}}/actions/comments",
+							"host": [
+								"{{baseURL}}cards"
+							],
+							"path": [
+								"{{idCard}}",
+								"actions",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "View",
+			"item": [
+				{
+					"name": "get board",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}boards/{{idBoard}}",
+							"host": [
+								"{{baseURL}}boards"
+							],
+							"path": [
+								"{{idBoard}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}lists/{{idList}}",
+							"host": [
+								"{{baseURL}}lists"
+							],
+							"path": [
+								"{{idList}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get card",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseURL}}cards/{{idCard}}/actions/comments",
+							"host": [
+								"{{baseURL}}cards"
+							],
+							"path": [
+								"{{idCard}}",
+								"actions",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "update card",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"update\",\r\n    \"token\":\"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}cards/{{idCard}}",
+							"host": [
+								"{{baseURL}}cards"
+							],
+							"path": [
+								"{{idCard}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update list",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idList\":\"{{idList2}}\",\r\n    \"token\":\"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}cards/{{idCard}}",
+							"host": [
+								"{{baseURL}}cards"
+							],
+							"path": [
+								"{{idCard}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "delete card",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idcard\":\"{{idCard}}\",\r\n    \"token\":\"{{token}}\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}cards/{{idCard}}}/actions/comments",
+							"host": [
+								"{{baseURL}}cards"
+							],
+							"path": [
+								"{{idCard}}}",
+								"actions",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete board",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "cookie",
+								"value": "token={{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idboard\":\"{{idBoard}}\",\r\n    \"token\":\"{{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}boards/{{idBoard}}",
+							"host": [
+								"{{baseURL}}boards"
+							],
+							"path": [
+								"{{idBoard}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "https://trello.com/1/",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "649164e3f04490ffa5a68802/ATTSNIxDVx9yiKAGXLVhXJ5ZK9jyHtmzaGCACTi9F1ieCt0c5Y6QnxhmDHtLHTaPuxbGB42B9924",
+			"type": "string"
+		},
+		{
+			"key": "idBoard",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idList",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idList2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idCard",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "idComm",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
